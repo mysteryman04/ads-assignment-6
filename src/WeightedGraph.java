@@ -17,6 +17,12 @@ public class WeightedGraph {
         adjacencyMap.get(source).put(destination, weight);
         adjacencyMap.get(destination).put(source, weight);
     }
+    public int getEdgeWeight(Vertex source, Vertex destination) {
+        if (!adjacencyMap.containsKey(source) || !adjacencyMap.containsKey(destination))
+            throw new IllegalArgumentException("Vertices not present in the graph.");
+
+        return adjacencyMap.get(source).getOrDefault(destination, Integer.MAX_VALUE);
+    }
 
 
 }

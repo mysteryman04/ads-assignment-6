@@ -15,5 +15,12 @@ public class Vertex {
     public void addNeighbor(Vertex neighbor) {
         neighbors.add(neighbor);
     }
+    public List<Vertex> getNeighbors() {
+        return neighbors;
+    }
 
+    @Override
+    public String toString() {
+        return String.valueOf(id);
+    }
 }

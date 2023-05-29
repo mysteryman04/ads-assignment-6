@@ -7,6 +7,9 @@ public class WeightedGraph {
     public WeightedGraph() {
         this.adjacencyMap = new HashMap<>();
     }
+    public void addVertex(Vertex vertex) {
+        adjacencyMap.put(vertex, new HashMap<>());
+    }
 
 
 }

@@ -9,4 +9,11 @@ public class Vertex {
         this.id = id;
         this.neighbors = new ArrayList<>();
     }
+    public int getId() {
+        return id;
+    }
+    public void addNeighbor(Vertex neighbor) {
+        neighbors.add(neighbor);
+    }
+
 }

@@ -11,18 +11,22 @@ public class WeightedGraph {
         adjacencyMap.put(vertex, new HashMap<>());
     }
     public void addEdge(Vertex source, Vertex destination, int weight) {
-        if (!adjacencyMap.containsKey(source) || !adjacencyMap.containsKey(destination))
-            throw new IllegalArgumentException("Vertices not present");
 
         adjacencyMap.get(source).put(destination, weight);
         adjacencyMap.get(destination).put(source, weight);
     }
     public int getEdgeWeight(Vertex source, Vertex destination) {
         if (!adjacencyMap.containsKey(source) || !adjacencyMap.containsKey(destination))
-            throw new IllegalArgumentException("Vertices not present in the graph.");
+            throw new IllegalArgumentException("Vertices not present");
 
         return adjacencyMap.get(source).getOrDefault(destination, Integer.MAX_VALUE);
     }
 
+    public Map<Vertex, Integer> getAdjacentVertices(Vertex vertex) {
+        if (!adjacencyMap.containsKey(vertex))
+            throw new IllegalArgumentException("Vertex not present");
+
+        return adjacencyMap.get(vertex);
+    }
 
 }

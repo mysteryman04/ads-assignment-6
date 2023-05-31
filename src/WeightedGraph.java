@@ -1,10 +1,14 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class WeightedGraph {
+    private List<Vertex> vertices;
     private Map<Vertex, Map<Vertex, Integer>> adjacencyMap;
 
     public WeightedGraph() {
+        this.vertices = new ArrayList<>();
         this.adjacencyMap = new HashMap<>();
     }
     public void addVertex(Vertex vertex) {
@@ -36,6 +40,9 @@ public class WeightedGraph {
             throw new IllegalArgumentException("Vertex not present");
 
         return adjacencyMap.get(vertex);
+    }
+    public List<Vertex> getVertices() {
+        return vertices;
     }
 
 }

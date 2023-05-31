@@ -33,12 +33,25 @@ public class BreadthFirstSearch implements Search {
 
     @Override
     public boolean hasPathTo(Vertex destination) {
-        return false;
+        return visited.containsKey(destination);
     }
 
     @Override
     public List<Vertex> pathTo(Vertex destination) {
-        return null;
+        if (!hasPathTo(destination)) {
+            return null;
+        }
+
+        List<Vertex> path = new ArrayList<>();
+        Vertex currentVertex = destination;
+        while (!currentVertex.equals(source)) {
+            path.add(currentVertex);
+            currentVertex = edgeTo.get(currentVertex);
+        }
+        path.add(source);
+        Collections.reverse(path);
+
+        return path;
     }
 }
 

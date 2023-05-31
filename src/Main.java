@@ -25,8 +25,14 @@ public class Main {
         } else {
             System.out.println("No path found.");
         }
+        DijkstraSearch dijkstra = new DijkstraSearch(graph, vertexA);
+        List<Vertex> dijkstraPath = dijkstra.pathTo(vertexC);
 
-
+        if (dijkstraPath != null) {
+            System.out.println("Dijkstra Path: " + dijkstraPath);
+        } else {
+            System.out.println("No path found.");
+        }
 
 
     }

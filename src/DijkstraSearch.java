@@ -10,13 +10,13 @@ public class DijkstraSearch implements Search {
         this.source = source;
         distTo = new HashMap<>();
         edgeTo = new HashMap<>();
-        minHeap = new PriorityQueue<>(Comparator.comparingInt(distTo::get));
 
         for (Vertex vertex : graph.getVertices()) {
             distTo.put(vertex, Integer.MAX_VALUE);
         }
 
         distTo.put(source, 0);
+        minHeap = new PriorityQueue<>(Comparator.comparingInt(v -> distTo.getOrDefault(v, Integer.MAX_VALUE)));
         minHeap.offer(source);
 
         while (!minHeap.isEmpty()) {
@@ -26,7 +26,7 @@ public class DijkstraSearch implements Search {
                 int edgeWeight = entry.getValue();
                 int newDistance = distTo.get(currentVertex) + edgeWeight;
 
-                if (newDistance < distTo.get(neighbor)) {
+                if (newDistance < distTo.getOrDefault(neighbor, Integer.MAX_VALUE)) {
                     distTo.put(neighbor, newDistance);
                     edgeTo.put(neighbor, currentVertex);
                     minHeap.offer(neighbor);

@@ -4,8 +4,10 @@ public class DijkstraSearch implements Search {
     private Map<Vertex, Integer> distTo;
     private Map<Vertex, Vertex> edgeTo;
     private PriorityQueue<Vertex> minHeap;
+    private Vertex source;
 
     public DijkstraSearch(WeightedGraph graph, Vertex source) {
+        this.source = source;
         distTo = new HashMap<>();
         edgeTo = new HashMap<>();
         minHeap = new PriorityQueue<>(Comparator.comparingInt(distTo::get));
@@ -33,14 +35,25 @@ public class DijkstraSearch implements Search {
         }
     }
 
-
     @Override
     public boolean hasPathTo(Vertex destination) {
-        return false;
+        return distTo.get(destination) < Integer.MAX_VALUE;
     }
 
     @Override
     public List<Vertex> pathTo(Vertex destination) {
-        return null;
+        if (!hasPathTo(destination))
+            return null;
+
+        List<Vertex> path = new ArrayList<>();
+        Vertex currentVertex = destination;
+        while (!currentVertex.equals(source)) {
+            path.add(currentVertex);
+            currentVertex = edgeTo.get(currentVertex);
+        }
+        path.add(source);
+        Collections.reverse(path);
+
+        return path;
     }
 }
